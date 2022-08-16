@@ -36,6 +36,23 @@ class MyTable(QTableWidget):
         self.setRowHeight(0, 100)
         # 设置第一行高度为100px，第一列宽度为200px。
 
+        # 固定值
+        # self.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
+        # 随内容分配列宽 不能自动调节
+        self.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeToContents)
+        # 随内容分配列宽 可调节
+        # self.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        # self.horizontalHeader().setSectionResizeMode(0, QHeaderView.Interactive)
+        # self.horizontalHeader().setSectionResizeMode(1, QHeaderView.Interactive)
+        # self.horizontalHeader().setSectionResizeMode(2, QHeaderView.Interactive)
+        # self.horizontalHeader().setSectionResizeMode(3, QHeaderView.Interactive)
+        # self.horizontalHeader().setSectionResizeMode(4, QHeaderView.Interactive)
+        # 设置宽度
+        # self.setColumnWidth(0, 40)
+        # self.setColumnWidth(1, 200)
+        # self.setColumnWidth(2, 200)
+
         self.table()
 
     def table(self):
@@ -48,6 +65,8 @@ class MyTable(QTableWidget):
         # 添加表格的文字内容.
         self.setHorizontalHeaderLabels(["第一行", "第二行", "第三行", "第四行", "第五行", "第六行"])
         self.setVerticalHeaderLabels(["第一列", "第二列"])
+
+
         # 设置表头
         lbp = QLabel()
         lbp.setPixmap(QPixmap("youPicture.png"))

@@ -13,7 +13,7 @@ Created on 2017年4月6日
 try:
     from PyQt5.QtCore import Qt
     from PyQt5.QtGui import QStandardItemModel, QStandardItem
-    from PyQt5.QtWidgets import QTableView, QApplication, QAction, QMessageBox
+    from PyQt5.QtWidgets import QTableView, QApplication, QAction, QMessageBox, QHeaderView
 except ImportError:
     from PySide2.QtCore import Qt
     from PySide2.QtGui import QStandardItemModel, QStandardItem
@@ -30,6 +30,8 @@ class TableView(QTableView):
         self.doubleClicked.connect(self.onDoubleClick)
         self.addAction(QAction("复制", self, triggered=self.copyData))
         self.myModel = QStandardItemModel()  # model
+        # 随内容分配列宽 不能自动调节
+        self.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.initHeader()  # 初始化表头
         self.setModel(self.myModel)
         self.initData()  # 初始化模拟数据
