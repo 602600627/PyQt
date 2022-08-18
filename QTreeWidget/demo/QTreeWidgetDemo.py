@@ -1,5 +1,5 @@
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtWidgets import QMainWindow, QTreeWidget, QTreeWidgetItem, QApplication, QPushButton, QWidget, QHBoxLayout, \
     QVBoxLayout
 
@@ -74,9 +74,17 @@ class QTreeWidgetDemo(QMainWindow):
         print(index.row(), index.column())
 
     def addBtn_click(self):
-        item = self.tree.currentItem()
-        child = QTreeWidgetItem(item)
-        child.setText(0, '新增节点')
+        try:
+            item = self.tree.currentItem()
+            child = QTreeWidgetItem(item)
+            child.setText(0, '新增节点')
+            # 设置字体大小
+            child.setFont(0, QFont('Arial', 30))
+            # 设置字体颜色
+            child.setForeground(0, Qt.green)
+
+        except Exception as e:
+            print(e)
 
     def removeBtn_click(self):
         item = self.tree.currentItem()

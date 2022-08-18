@@ -9,6 +9,7 @@ Created on 2018年11月4日
 @file: 删除Item
 @description: 
 """
+from PyQt5.QtGui import QFont
 
 try:
     from PyQt5.QtCore import QSize, pyqtSignal
@@ -81,6 +82,8 @@ class Window(QWidget):
         for i in range(100):
             item = QListWidgetItem(self.listWidget)
             widget = ItemWidget('item: {}'.format(i), item, self.listWidget)
+            widget.setFont(QFont('宋体', 18, QFont.Bold))
+            widget.setStyleSheet("color:red")
             # 绑定删除信号
             widget.itemDeleted.connect(self.doDeleteItem)
             self.listWidget.setItemWidget(item, widget)
