@@ -1,7 +1,8 @@
 import sys
 
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QWidget, QApplication, QVBoxLayout, QListWidget, QListWidgetItem, QLabel, QHBoxLayout
+from PyQt5.QtWidgets import QWidget, QApplication, QVBoxLayout, QListWidget, QListWidgetItem, QLabel, QHBoxLayout, \
+    QPushButton
 from PyQt5.uic.properties import QtCore
 
 
@@ -35,12 +36,31 @@ class QListWidgetFontDemo(QWidget):
 
         layout.addWidget(self.listWidget)
 
+        clearBtn = QPushButton("清空")
+        deleteBtn = QPushButton("删除")
+        layout.addWidget(clearBtn)
+        layout.addWidget(deleteBtn)
+
+        clearBtn.clicked.connect(self.clearBtn_click)
+        deleteBtn.clicked.connect(self.deleteBtn_click)
+
         self.setLayout(layout)
 
     def tree_item_changed(self, index):
         currentIndex = self.listWidget.indexWidget(index)
         print(currentIndex.text())
         print(index.row())
+
+    # 清空所有列表
+    def clearBtn_click(self):
+        self.listWidget.clear()
+
+    # 删除当前列表ITEM
+    def deleteBtn_click(self):
+        item = self.listWidget.currentItem()
+        self.listWidget.removeItemWidget(item)
+
+        # self.listWidget.currentItem().setHidden(True)
 
 
 if __name__ == '__main__':
